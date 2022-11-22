@@ -44,9 +44,8 @@ char *modify_str_with_x(int **map, char *filepath, int nb_rows, int nb_cols)
     return str;
 }
 
-int main(int ac, char **av)
+int bsq_functions(char *filepath)
 {
-    char *filepath = av[1];
     int **map = NULL;
     int nb_rows = get_nb_rows(filepath);
     int size = get_size(filepath);
@@ -61,4 +60,29 @@ int main(int ac, char **av)
     for (int i = 0; i < nb_rows; i++)
         free(map[i]);
     free(str);
+    return 0;
+}
+
+int main(int ac, char **av)
+{
+    int fd = 0;
+
+    if (ac < 2) {
+        write(2, "Too few arguments\n", 18);
+        return 84;
+    }
+    if (ac == 2) {
+        fd = open(av[1], O_RDONLY);
+        if (fd == -1)
+            return 84;
+        close(fd);
+        bsq_functions(av[1]);
+    }
+    if (ac > 3) {
+        write(2, "Too many arguments\n", 19);
+        return 84;
+    }
+    if (ac == 3)
+        generated_bsq(ac, av);
+    return 0;
 }

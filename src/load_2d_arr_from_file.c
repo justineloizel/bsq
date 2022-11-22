@@ -22,7 +22,7 @@ char *remove_nb(char *str)
     return str_no_nb;
 }
 
-static int **loop_filling_array(indexes_t *index, char *str, int **double_array)
+int **loop_filling_array(indexes_t *index, char *str, int **double_array)
 {
     if (str[index->k] != '\n') {
         if (str[index->k] == 'o')

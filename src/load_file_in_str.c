@@ -7,13 +7,24 @@
 
 #include "my_bsq.h"
 
+int check_if_nb(char *str)
+{
+    for (int i = 0; str[i] != '\n'; i++) {
+        if (str[i] < 48 || str[i] > 57) {
+            write(2, "No number of lines is indicated.\n", 33);
+            exit(84);
+        }
+    }
+    return 0;
+}
+
 int open_file(char const *filepath)
 {
     int fd = 0;
 
     fd = open(filepath, O_RDONLY);
     if (fd == -1)
-        write(1, "FAILURE\n", 9);
+        write(2, "Cannot open file.\n", 18);
     return fd;
 }
 
@@ -42,5 +53,6 @@ char *load_file_in_str(char const *filepath)
     buffer = malloc(sizeof(char) * (size + 1));
     my_read(fd, buffer, size);
     buffer[size] = '\0';
+    check_if_nb(buffer);
     return buffer;
 }

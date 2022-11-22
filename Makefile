@@ -12,6 +12,7 @@ SRC =	src/load_2d_arr_from_file.c	\
 		src/my_getnbr.c	\
 		src/find_info.c	\
 		src/check_square.c	\
+		src/generating_maps.c	\
 
 
 OBJ = $(SRC:.c=.o)

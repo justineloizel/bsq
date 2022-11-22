@@ -42,5 +42,14 @@ int **modify_map(int **map, int nb_rows, int nb_cols, coordonates_t coord);
 char *modify_str_with_x(int **map, char *filepath, int nb_rows, int nb_cols);
 int **find_coordonates_biggest_square(int **map, int nb_rows, int nb_cols);
 void square_conditions_others(int **map, int i, int j, int check);
+int bsq_functions(char *filepath);
+int check_if_nb(char *str);
+char *generate_map(int size, char *av);
+int **loop_filling_array(indexes_t *index, char *str, int **double_array);
+int **load_2d_arr_from_arg(char *str, int nb_rows, int nb_cols);
+char *modify_gen_str_with_x(int **map, char *str, int nb_rows, int nb_cols);
+void loop_adding_x(int **map, indexes_t *index, char *str);
+int check_nb_arg(int ac, char **av);
+int generated_bsq(int ac, char **av);
 
 #endif
