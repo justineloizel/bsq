@@ -7,6 +7,17 @@
 
 #include "my_bsq.h"
 
+int check_content(char *str)
+{
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] != 'o' && str[i] != '.' && str[i] != '\n') {
+            write(2, "Content non valid.\n", 19);
+            exit(84);
+        }
+    }
+    return 0;
+}
+
 char *remove_nb(char *str)
 {
     char *str_no_nb = NULL;
@@ -19,6 +30,7 @@ char *remove_nb(char *str)
     for (; str[i] != '\0'; i++, j++)
         str_no_nb[j] = str[i];
     str_no_nb[j] = '\0';
+    check_content(str_no_nb);
     return str_no_nb;
 }
 

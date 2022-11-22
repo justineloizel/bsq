@@ -51,5 +51,6 @@ char *modify_gen_str_with_x(int **map, char *str, int nb_rows, int nb_cols);
 void loop_adding_x(int **map, indexes_t *index, char *str);
 int check_nb_arg(int ac, char **av);
 int generated_bsq(int ac, char **av);
+int check_content(char *str);
 
 #endif
