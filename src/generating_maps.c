@@ -41,7 +41,7 @@ int **load_2d_arr_from_arg(char *str, int nb_rows, int nb_cols)
     for (int m = 0; m < nb_rows; m++)
         double_array[m] = malloc(sizeof(int) * nb_cols + 1);
     for (index.k = 0; index.j < nb_rows; index.j++, index.k++) {
-        for (; index.i < nb_cols - 1; index.k++)
+        for (; index.i < nb_cols; index.k++)
             double_array = loop_filling_array(&index, str, double_array);
         double_array[index.j][index.i] = -1;
         index.i = 0;

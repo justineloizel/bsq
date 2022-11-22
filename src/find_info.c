@@ -43,7 +43,7 @@ int get_nb_rows(char *filepath)
 
 static coordonates_t save_coordinates(int **map, int j, coordonates_t coord)
 {
-    for (int i = 0; i < coord.nb_cols - 1; i++) {
+    for (int i = 0; i < coord.nb_cols; i++) {
         if (map[j][i] > coord.save) {
             coord.save = map[j][i];
             coord.coor_line = j;
@@ -62,6 +62,8 @@ int **find_coordonates_biggest_square(int **map, int nb_rows, int nb_cols)
 
     for (int j = 0; j < nb_rows; j++)
         coord = save_coordinates(map, j, coord);
+    if (coord.save == 0)
+        return map;
     map = modify_map(map, nb_rows, nb_cols, coord);
     return map;
 }
@@ -71,7 +73,7 @@ int **find_biggest_square(int **map, int nb_rows, int nb_cols)
     int j = 0;
     int i = 0;
 
-    for (j = 1; j < nb_rows; j++) {
+    for (j = 0; j < nb_rows; j++) {
         for (i = 0; i < nb_cols; i++)
             square_conditions(map, i, j);
     }
