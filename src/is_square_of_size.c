@@ -52,7 +52,9 @@ int bsq_functions(char *filepath)
     int nb_cols = (size / nb_rows);
     char *str = NULL;
 
-    map = load_2d_arr_from_file(filepath, nb_rows, nb_cols);
+    if (nb_rows == 0)
+        return 84;
+    map = load_2d_arr_from_file(filepath, nb_rows, nb_cols, map);
     if (map == NULL)
         return 84;
     map = find_biggest_square(map, nb_rows, nb_cols);
@@ -69,8 +71,7 @@ int main(int ac, char **av)
 {
     int fd = 0;
 
-    if (ac < 2) {
-        write(2, "Too few arguments\n", 18);
+    if (ac < 2 || ac > 3) {
         return 84;
     }
     if (ac == 2) {
@@ -78,13 +79,11 @@ int main(int ac, char **av)
         if (fd == -1)
             return 84;
         close(fd);
-        bsq_functions(av[1]);
-    }
-    if (ac > 3) {
-        write(2, "Too many arguments\n", 19);
-        return 84;
+        if (bsq_functions(av[1]) == 84)
+            return 84;
     }
     if (ac == 3)
-        generated_bsq(ac, av);
+        if (generated_bsq(ac, av) == 84)
+            return 84;
     return 0;
 }

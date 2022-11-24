@@ -33,7 +33,7 @@ void my_read(int fd, char *buffer, int size);
 char *load_file_in_str(char const *filepath);
 int my_strlen(char const *str);
 char *remove_nb(char *str);
-int **load_2d_arr_from_file(char const *filepath, int nb_rows, int nb_cols);
+int **load_2d_arr_from_file(char const *filepath, int nb_rows, int nb_cols, int **map);
 int my_getnbr(char const *str);
 int get_size(char *filepath);
 int get_nb_rows(char *filepath);

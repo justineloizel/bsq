@@ -85,6 +85,8 @@ int generated_bsq(int ac, char **av)
         return 84;
     str = generate_map(nb_rows, av[2]);
     check_content(str);
+    if (check_content(str) == 84)
+        return 84;
     map = load_2d_arr_from_arg(str, nb_rows, nb_cols);
     map = find_biggest_square(map, nb_rows, nb_cols);
     map = find_coordonates_biggest_square(map, nb_rows, nb_cols);
@@ -92,6 +94,5 @@ int generated_bsq(int ac, char **av)
     write(1, str, my_strlen(str));
     for (int i = 0; i < nb_rows; i++)
         free(map[i]);
-    free(str);
     return 0;
 }

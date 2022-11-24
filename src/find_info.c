@@ -28,6 +28,8 @@ int get_nb_rows(char *filepath)
     int size = get_size(filepath);
     int j = 0;
 
+    if (map_str == NULL)
+        return 84;
     str = malloc(sizeof(char) * size + 1);
     for (int i = 0; map_str[i] != '\n'; i++) {
         if (map_str[i] >= '0' && map_str[i] <= '9') {
@@ -36,8 +38,8 @@ int get_nb_rows(char *filepath)
             return -1;
     }
     nb_rows = my_getnbr(map_str);
-    free(str);
-    free(map_str);
+    if (nb_rows == 0)
+        return 84;
     return nb_rows;
 }
 

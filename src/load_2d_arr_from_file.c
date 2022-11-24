@@ -48,25 +48,27 @@ int **loop_filling_array(indexes_t *index, char *str, int **double_array)
     return double_array;
 }
 
-int **load_2d_arr_from_file(char const *filepath, int nb_rows, int nb_cols)
+int **load_2d_arr_from_file(char const *filepath, int nb_rows,
+int nb_cols, int **map)
 {
-    int **double_array = NULL;
     char *str = NULL;
     indexes_t index;
     index.i = 0;
     index.j = 0;
 
+    if (load_file_in_str(filepath) == NULL)
+        return NULL;
     str = remove_nb(load_file_in_str(filepath));
     if (str == NULL)
         return NULL;
-    double_array = malloc(sizeof(int *) * nb_rows + 1);
+    map = malloc(sizeof(int *) * nb_rows + 1);
     for (int m = 0; m < nb_rows; m++)
-        double_array[m] = malloc(sizeof(int) * nb_cols + 1);
+        map[m] = malloc(sizeof(int) * nb_cols + 1);
     for (index.k = 0; index.j < nb_rows; index.j++, index.k++) {
         for (; index.i < nb_cols - 1; index.k++)
-            double_array = loop_filling_array(&index, str, double_array);
-        double_array[index.j][index.i] = -1;
+            map = loop_filling_array(&index, str, map);
+        map[index.j][index.i] = -1;
         index.i = 0;
     }
-    return double_array;
+    return map;
 }

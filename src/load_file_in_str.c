@@ -11,7 +11,6 @@ int check_if_nb(char *str)
 {
     for (int i = 0; str[i] != '\n'; i++) {
         if (str[i] < 48 || str[i] > 57) {
-            write(2, "No number of lines is indicated.\n", 33);
             return 84;
         }
     }
