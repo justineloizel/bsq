@@ -25,6 +25,7 @@ typedef struct indexes {
     int i;
     int j;
     int k;
+    int error;
 } indexes_t;
 
 int open_file(char const *filepath);

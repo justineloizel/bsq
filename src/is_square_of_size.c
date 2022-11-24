@@ -53,6 +53,8 @@ int bsq_functions(char *filepath)
     char *str = NULL;
 
     map = load_2d_arr_from_file(filepath, nb_rows, nb_cols);
+    if (map == NULL)
+        return 84;
     map = find_biggest_square(map, nb_rows, nb_cols);
     map = find_coordonates_biggest_square(map, nb_rows, nb_cols);
     str = modify_str_with_x(map, filepath, nb_rows, nb_cols);

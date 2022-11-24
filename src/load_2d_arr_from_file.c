@@ -12,7 +12,7 @@ int check_content(char *str)
     for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] != 'o' && str[i] != '.' && str[i] != '\n') {
             write(2, "Content non valid.\n", 19);
-            exit(84);
+            return 84;
         }
     }
     return 0;
@@ -31,6 +31,8 @@ char *remove_nb(char *str)
         str_no_nb[j] = str[i];
     str_no_nb[j] = '\0';
     check_content(str_no_nb);
+    if (check_content(str_no_nb) == 84)
+        return NULL;
     return str_no_nb;
 }
 
@@ -55,6 +57,8 @@ int **load_2d_arr_from_file(char const *filepath, int nb_rows, int nb_cols)
     index.j = 0;
 
     str = remove_nb(load_file_in_str(filepath));
+    if (str == NULL)
+        return NULL;
     double_array = malloc(sizeof(int *) * nb_rows + 1);
     for (int m = 0; m < nb_rows; m++)
         double_array[m] = malloc(sizeof(int) * nb_cols + 1);

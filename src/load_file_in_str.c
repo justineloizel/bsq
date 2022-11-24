@@ -12,7 +12,7 @@ int check_if_nb(char *str)
     for (int i = 0; str[i] != '\n'; i++) {
         if (str[i] < 48 || str[i] > 57) {
             write(2, "No number of lines is indicated.\n", 33);
-            exit(84);
+            return 84;
         }
     }
     return 0;
@@ -54,5 +54,7 @@ char *load_file_in_str(char const *filepath)
     my_read(fd, buffer, size);
     buffer[size] = '\0';
     check_if_nb(buffer);
+    if (check_if_nb(buffer) == 84)
+        return NULL;
     return buffer;
 }
