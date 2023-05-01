@@ -21,6 +21,7 @@ make
 ./bsq [size of board] [pattern]
 ```
 The pattern has to be created with 'o' and '.' only.<br />
+<br />
 Example: 
 ```
 ./bsq 10 "..ooo.." > board.txt
